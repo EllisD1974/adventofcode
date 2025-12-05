@@ -17,9 +17,9 @@ def rotate_dial(dial_val: int, rotate_key: str) -> int:
     rot_amount = int(rotate_key[1:])    # Chop off L or R character from start of key
 
     if rotate_key.startswith(LEFT_CHAR):
-        return (dial_val - rot_amount) % 100
-    else:
-        return (dial_val + rot_amount) % 100
+        rot_amount *= -1
+
+    return (dial_val + rot_amount) % 100
 
 def calculate_password(puzzle_input: List[str], dial_start: int) -> int:
     """Calculate the whole password given the input list and dial start value."""
