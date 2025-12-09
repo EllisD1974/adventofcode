@@ -7,14 +7,14 @@ EMPTY = "."
 FULL = "@"
 
 
-def get_puzzle_input(input_file: str = None) -> np.array[List[str]]:
+def get_puzzle_input(input_file: str = None) -> np.array([List[str]]):
     """Read in the puzzle input file into a numpy matrix."""
     input_file = input_file or "puzzle_input.txt"
     with open(input_file) as f:
         return np.array([list(line.strip()) for line in f])
 
 
-def get_chip(matrix: List[List[str]], x: int, y: int) -> List[List[str]]:
+def get_chip(matrix: np.array([List[str]]), x: int, y: int) -> List[List[str]]:
     """Get a 'chip', i.e a 3x3 matrix of values surrounding and including the current coordinates."""
     x1 = max(0, x - 1)
     x2 = min(matrix.shape[0], x + 2)
@@ -22,7 +22,7 @@ def get_chip(matrix: List[List[str]], x: int, y: int) -> List[List[str]]:
     y2 = min(matrix.shape[1], y + 2)
     return matrix[y1:y2, x1:x2]
 
-def check_for_n_adjacent_chars(puzzle_input: List[List[str]], x: int, y: int , max_allowed_full_neighbors: int = 4 - 1):
+def check_for_n_adjacent_chars(puzzle_input: np.array([List[str]]), x: int, y: int , max_allowed_full_neighbors: int = 4 - 1):
     """Check if there are under the max allowed number of adjacent neighboring values that are not full."""
     current_char = puzzle_input[y][x]
     if current_char == FULL:
@@ -31,7 +31,7 @@ def check_for_n_adjacent_chars(puzzle_input: List[List[str]], x: int, y: int , m
             return True
     return False
 
-def calculate_password(puzzle_input: List[List[str]]) -> int:
+def calculate_password(puzzle_input: np.array([List[str]])) -> int:
     """Calculate password."""
     password = 0
     for y in range(len(puzzle_input)):
